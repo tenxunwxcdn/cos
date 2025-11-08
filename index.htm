@@ -116,16 +116,13 @@
 </head>
 <body>
     <!-- 错误提示标题（默认隐藏） -->
-    <div class="auth-title" id="authTitle"></div>
+    <h1 class="auth-title" style="display: none;">未授权无法使用</h1>
     
     <!-- 三色加载动画（无标题） -->
     <div class="container">
-        <div class="loader">
-            <div class="dot dot1"></div>
-            <div class="dot dot2"></div>
-            <div class="dot dot3"></div>
-        </div>
-        <p class="loading-text" id="loadingText">正在进行防洪验证...</p>
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
     </div>
 
     <script>
@@ -154,15 +151,11 @@
             }
 
             // 先验证防洪记录
-            document.getElementById('loadingText').textContent = '正在进行防洪验证...';
             validateFloodRecord(encodedParam)
                 .then(isValid => {
                     if (!isValid) {
                         throw new Error('数据库没有该编码，无法访问');
                     }
-                    
-                    // 验证通过，更新提示文本
-                    document.getElementById('loadingText').textContent = '验证通过，正在加载内容...';
                     
                     // 验证通过，继续原有流程
                     let targetUrl;
